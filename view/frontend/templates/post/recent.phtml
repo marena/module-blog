@@ -1,4 +1,5 @@
 <?php
+
 use Mirasvit\Blog\Model\Post;
 
 /** @var \Mirasvit\Blog\Block\Post\Recent $block */
@@ -26,10 +27,10 @@ $postCollection = $block->getCollection()
                             </header>
 
                             <div class="blog__post-excerpt" itemprop="text">
-                                <?php if ($post->getFeaturedImageUrl() && $post->getFeaturedShowOnHome()): ?>
+                                <?php if ($post->isFeaturedImage() && $post->getFeaturedShowOnHome()): ?>
                                     <a href="<?= $post->getUrl() ?>">
-                                        <img 
-                                                src="<?= $post->getFeaturedImageUrl() ?>" 
+                                        <img
+                                                src="<?= $post->getThumbnailListImageUrl([$block->getImageWidth(), $block->getImageHeight()]) ?>"
                                                 alt="<?= $block->getFeaturedAlt($post) ?>"
                                             <?= $block->getImageWidth() ? "width=\"" . $block->getImageWidth() . "px\"" : '' ?>
                                             <?= $block->getImageHeight() ? "height=\"" . $block->getImageHeight() . "px\"" : '' ?>

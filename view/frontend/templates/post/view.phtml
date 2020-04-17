@@ -9,8 +9,8 @@ $post = $block->getPost();
 
     <?= $this->getPostMetaHeader()->toHtml() ?>
 
-    <?php if ($post->getFeaturedImageUrl()): ?>
-        <img src="<?= $post->getFeaturedImageUrl() ?>" alt="<?= $post->getName() ?>" class="blog__post-featured-image"/>
+    <?php if ($post->isFeaturedImage()): ?>
+        <img src="<?= $post->getThumbnailFeaturedImageUrl() ?>" alt="<?= $post->getName() ?>" class="blog__post-featured-image"/>
     <?php endif ?>
 
     <?= $block->getPostContent() ?>

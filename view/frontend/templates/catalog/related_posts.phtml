@@ -13,9 +13,9 @@ if (!$collection->count()) {
     <ol>
         <?php foreach ($collection as $post): ?>
             <li>
-                <?php if ($post->getFeaturedImageUrl()): ?>
+                <?php if ($post->isFeaturedImage()): ?>
                     <a href="<?= $post->getUrl() ?>">
-                        <img src="<?= $post->getFeaturedImageUrl() ?>" alt="<?= $post->getName() ?>" class="post-image"/>
+                        <img src="<?= $post->getThumbnailListImageUrl() ?>" alt="<?= $post->getName() ?>" class="post-image"/>
                     </a>
                 <?php endif ?>
 

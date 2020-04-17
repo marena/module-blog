@@ -34,21 +34,22 @@ class Config
     protected $urlManager;
 
     /**
-     * @param ScopeConfigInterface  $scopeConfig
+     * @param ScopeConfigInterface $scopeConfig
      * @param StoreManagerInterface $storeManager
-     * @param Filesystem            $filesystem
-     * @param MagentoUrlInterface   $urlManager
+     * @param Filesystem $filesystem
+     * @param MagentoUrlInterface $urlManager
      */
     public function __construct(
         ScopeConfigInterface $scopeConfig,
         StoreManagerInterface $storeManager,
         Filesystem $filesystem,
         MagentoUrlInterface $urlManager
-    ) {
-        $this->scopeConfig  = $scopeConfig;
+    )
+    {
+        $this->scopeConfig = $scopeConfig;
         $this->storeManager = $storeManager;
-        $this->filesystem   = $filesystem;
-        $this->urlManager   = $urlManager;
+        $this->filesystem = $filesystem;
+        $this->urlManager = $urlManager;
     }
 
     /**
@@ -110,6 +111,36 @@ class Config
             'blog/display/excerpt_size',
             ScopeInterface::SCOPE_STORE
         );
+    }
+
+    /**
+     * @return array
+     */
+    public function getMaxPostImageSize()
+    {
+        return [
+            $this->scopeConfig->getValue(
+                'blog/display/max_post_image_width',
+                ScopeInterface::SCOPE_STORE),
+            $this->scopeConfig->getValue(
+                'blog/display/max_post_image_height',
+                ScopeInterface::SCOPE_STORE),
+        ];
+    }
+
+    /**
+     * @return array
+     */
+    public function getMaxListImageSize()
+    {
+        return [
+            $this->scopeConfig->getValue(
+                'blog/display/max_list_image_width',
+                ScopeInterface::SCOPE_STORE),
+            $this->scopeConfig->getValue(
+                'blog/display/max_list_image_height',
+                ScopeInterface::SCOPE_STORE),
+        ];
     }
 
     /**

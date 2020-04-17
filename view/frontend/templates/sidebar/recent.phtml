@@ -18,14 +18,14 @@ use Mirasvit\Blog\Block\Sidebar\Recent; ?>
         <ol class="items">
             <?php foreach ($collection as $post): ?>
                 <?php
-                $imgPath = $post->getFeaturedImageUrl();
+                $imgPath = $post->getThumbnailLIstImageUrl([$block->getImageWidth(), $block->getImageHeight()]);
                 ?>
                 <li class="item">
                     <?php if ($imgPath): ?>
                         <a href="<?= $post->getUrl() ?>">
                             <img
-                                    src="<?= $imgPath ?>" 
-                                    alt="<?= $post->getName() ?>" 
+                                    src="<?= $imgPath ?>"
+                                    alt="<?= $post->getName() ?>"
                                     class="blog__post-featured-image"
                                 <?= $block->getImageWidth() ? "width=\"" . $block->getImageWidth() . "px\"" : '' ?>
                                 <?= $block->getImageHeight() ? "height=\"" . $block->getImageHeight() . "px\"" : '' ?>

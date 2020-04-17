@@ -20,6 +20,7 @@ use Mirasvit\Blog\Api\Data\TagInterface;
 use Mirasvit\Blog\Api\Repository\AuthorRepositoryInterface;
 use Mirasvit\Blog\Api\Repository\CategoryRepositoryInterface;
 use Mirasvit\Blog\Api\Repository\TagRepositoryInterface;
+use Mirasvit\Blog\Helper\Image as ImageHelper;
 
 /**
  * @method string getFeaturedShowOnHome()
@@ -30,8 +31,13 @@ use Mirasvit\Blog\Api\Repository\TagRepositoryInterface;
  */
 class Post extends AbstractExtensibleModel implements IdentityInterface, PostInterface
 {
-    const ENTITY    = 'blog_post';
+    const ENTITY = 'blog_post';
     const CACHE_TAG = 'blog_post';
+
+    /**
+     * @var ImageHelper
+     */
+    protected $imageHelper;
 
     /**
      * @var MagentoImage
@@ -82,7 +88,8 @@ class Post extends AbstractExtensibleModel implements IdentityInterface, PostInt
         Context $context,
         Registry $registry,
         ExtensionAttributesFactory $extensionFactory,
-        AttributeValueFactory $customAttributeFactory
+        AttributeValueFactory $customAttributeFactory,
+        ImageHelper $imageHelper
     ) {
         $this->categoryRepository       = $categoryRepository;
         $this->tagRepository            = $tagRepository;
@@ -92,6 +99,7 @@ class Post extends AbstractExtensibleModel implements IdentityInterface, PostInt
         $this->url                      = $url;
         $this->storeManager             = $storeManager;
         $this->imageFactory             = $imageFactory;
+        $this->imageHelper              = $imageHelper;
 
         parent::__construct($context, $registry, $extensionFactory, $customAttributeFactory);
     }
@@ -500,9 +508,43 @@ class Post extends AbstractExtensibleModel implements IdentityInterface, PostInt
     /**
      * @return string
      */
+    public function isFeaturedImage()
+    {
+        return $this->getFeaturedImage() ? true : false;
+    }
+
+    /**
+     * @return string
+     */
     public function getFeaturedImageUrl()
     {
         return $this->config->getMediaUrl($this->getFeaturedImage());
+    }
+
+    /**
+     * @param array $size
+     * @param bool $keepFrame
+     * @return string
+     */
+    public function getThumbnailFeaturedImageUrl($size = [0, 0], $keepFrame = false)
+    {
+        if ($size[0] == 0 && $size[1] == 0)
+            $size = $this->config->getMaxPostImageSize();
+
+        return $this->imageHelper->resize($this->getFeaturedImage(), $size, $keepFrame);
+    }
+
+    /**
+     * @param array $size
+     * @param bool $keepFrame
+     * @return string
+     */
+    public function getThumbnailListImageUrl($size = [0, 0], $keepFrame = false)
+    {
+        if ($size[0] == 0 && $size[1] == 0)
+            $size = $this->config->getMaxListImageSize();
+
+        return $this->imageHelper->resize($this->getFeaturedImage(), $size, $keepFrame);
     }
 
     /**

@@ -13,6 +13,10 @@
                 <main_menu>1</main_menu>
                 <enable_excerpts>1</enable_excerpts>
                 <excerpt_size>350</excerpt_size>
+                <max_post_image_width>1200</max_post_image_width>
+                <max_post_image_height>1200</max_post_image_height>
+                <max_list_image_width>300</max_list_image_width>
+                <max_list_image_height>300</max_list_image_height>
             </display>
 
             <comments>

@@ -30,7 +30,7 @@ use Mirasvit\Blog\Block\Category\Rss; ?>
                 <guid isPermaLink="false"><![CDATA[<?= $post->getUrl() ?>]]></guid>
                 <description><![CDATA[<?= $post->getShortContent() ?>]]></description>
                 <image>
-                    <url><?= $post->getFeaturedImageUrl() ?></url>
+                    <url><?= $post->getThumbnailFeaturedImageUrl() ?></url>
                 </image>
             </item>
         <?php endforeach ?>

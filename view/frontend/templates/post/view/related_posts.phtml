@@ -16,8 +16,8 @@ use Mirasvit\Blog\Block\Post\View\RelatedPosts; ?>
     <ol>
         <?php foreach ($collection as $post): ?>
             <li>
-                <?php if ($post->getFeaturedImageUrl()): ?>
-                    <img src="<?= $post->getFeaturedImageUrl() ?>" alt="<?= $post->getName() ?>" class="post-image"/>
+                <?php if ($post->isFeaturedImage()): ?>
+                    <img src="<?= $post->getThumbnailListImageUrl() ?>" alt="<?= $post->getName() ?>" class="post-image"/>
                 <?php endif ?>
 
                 <a href="<?= $post->getUrl() ?>" class="post-name"><?= $post->getName() ?></a>

@@ -15,9 +15,9 @@ $collection = $block->getCollection()
         <ol class="items">
             <?php foreach ($collection as $post): ?>
                 <li class="item">
-                    <?php if ($post->getFeaturedImageUrl()): ?>
+                    <?php if ($post->isFeaturedImage()): ?>
                         <a href="<?= $post->getUrl() ?>">
-                            <img src="<?= $post->getFeaturedImageUrl() ?>" alt="<?= $post->getName() ?>" class="blog__post-featured-image"/>
+                            <img src="<?= $post->getThumbnailFeaturedImageUrl() ?>" alt="<?= $post->getName() ?>" class="blog__post-featured-image"/>
                         </a>
                     <?php endif ?>
 

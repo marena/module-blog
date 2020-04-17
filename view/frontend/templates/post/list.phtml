@@ -24,9 +24,9 @@ $collection = $block->getPostCollection();
                     </header>
 
                     <div class="blog__post-excerpt" itemprop="text">
-                        <?php if ($post->getFeaturedImageUrl() && $post->getFeaturedShowOnHome()): ?>
+                        <?php if ($post->isFeaturedImage() && $post->getFeaturedShowOnHome()): ?>
                             <a href="<?= $post->getUrl() ?>">
-                                <img src="<?= $post->getFeaturedImageUrl() ?>"
+                                <img src="<?= $post->getThumbnailListImageUrl() ?>"
                                      alt="<?= $block->getFeaturedAlt($post) ?>"/>
                             </a>
                         <?php endif ?>
