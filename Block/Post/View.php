@@ -68,7 +68,7 @@ class View extends AbstractBlock implements IdentityInterface
     public function getPostContent()
     {
         return $this->filterProvider->getPageFilter()->filter(
-            $this->getPost()->getShortContent() . $this->getPost()->getContent()
+            $this->getPost()->getContent()
         );
     }
 
